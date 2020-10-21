@@ -1,0 +1,23 @@
+colors:
+  currency: "#0ac944"
+templates:
+  balance: "<color:{currency}>${balance}"
+  currency: "<color:{currency}>${amount}"
+messages:
+  economy:
+    balance: "Your current balance is %balance%<color:white>."
+    payment_receive: "You received %currency% <color:white> from <color:gold>{player}<color:white>."
+    payment_give: "You paid <color:gold>{player} %currency%<color:white>."
+    insufficient_funds: "<color:red>You do not have enough money to do that!"
+    pay_oneself: "<color:red>You cannot pay yourself!"
+    leaderboard_header: "Economy Leaderboard:"
+    leaderboard_entry: "<color:gold>#{position}: <color:white>{player} with %currency%"
+  guild:
+    no_info: "<color:red>You are not a member of any guild!"
+    info: "You are a member of <color:gold>[{guild_name}]<color:white>."
+    create: "You are now the <color:gold>Owner <color:white>of <color:gold>[{guild_name}]<color:white>."
+    invite_sent: "You invited <color:gold>{player} <color:white> to the guild."
+    invite_received: "{player} invited you to become a member of <color:gold>[{guild_name}]<color:white>. You have one minute to accept."
+    invite_other: "<color:gold>{player} <color:white>invited <color:gold>{target} <color:white> to the guild."
+    invite_accepted: "<color:gold>{player} accepted the invitation! They have joined the guild."
+    invite_declined: "<color:gold>{player} <color:red>declined the invitation because they waited too long."
