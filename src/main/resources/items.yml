@@ -1,0 +1,385 @@
+# Item Names and Lore Lines can use colors and templates from lang.yml
+items:
+  1:
+    name: "Magic Scroll T1"
+    material: PAPER
+    model: 0
+    flags:
+      - "enchanted"
+    description:
+      - "&7A simple Magic Scroll"
+  2:
+    name: "Magic Scroll T2"
+    material: PAPER
+    model: 0
+    flags:
+      - "enchanted"
+    description:
+      - "&7An advanced Magic Scroll"
+  3:
+    name: "Magic Scroll T3"
+    material: PAPER
+    model: 0
+    flags:
+      - "enchanted"
+    description:
+      - "&7A Magic Scroll crafted by an expert"
+  4:
+    name: "Enriched Lapis Lazuli"
+    material: LAPIS_LAZULI
+    model: 1
+    description:
+      - "&7A refined piece of Lapis Lazuli,"
+      - "&7enriched with Gold"
+  5:
+    name: "^coin^Coin"
+    material: GOLD_NUGGET
+    model: 1
+    description:
+      - "&7A gold coin"
+  100:
+    name: "Fireball Scroll T1"
+    material: SHEARS
+    model: 100
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7launch a Fireball"
+  110:
+    name: "Fireball Scroll T2"
+    material: SHEARS
+    model: 100
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7launch a dangerous Fireball"
+  120:
+    name: "Fireball Scroll T3"
+    material: SHEARS
+    model: 100
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7launch a deadly Fireball"
+  101:
+    name: "Blink Scroll"
+    material: SHEARS
+    model: 101
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7teleport a short distance"
+  102:
+    name: "Water Surge Scroll T1"
+    material: SHEARS
+    model: 102
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7send a stream of water that"
+      - "&7pushes away enemies"
+  112:
+    name: "Water Surge Scroll T2"
+    material: SHEARS
+    model: 102
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7send a wave of water that"
+      - "&7pushes away enemies"
+  122:
+    name: "Water Surge Scroll T3"
+    material: SHEARS
+    model: 102
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7send a surge of water that"
+      - "&7pushes away enemies"
+  103:
+    name: "Radiance Scroll"
+    material: SHEARS
+    model: 103
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7regenerate allies' health"
+  104:
+    name: "Ice Blast Scroll T1"
+    material: SHEARS
+    model: 104
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7fire an icy blast"
+  114:
+    name: "Ice Blast Scroll T2"
+    material: SHEARS
+    model: 104
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7fire an icy blast"
+  124:
+    name: "Ice Blast Scroll T3"
+    material: SHEARS
+    model: 104
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7fire an icy blast"
+  200:
+    name: "Smelt Ore Scroll"
+    material: SHEARS
+    model: 200
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7smelt 64 blocks of ore in your inventory"
+      - "&8[Ensure you have 64 blocks of ore for maximum efficiency]"
+  201:
+    name: "Teleport Scroll"
+    material: SHEARS
+    model: 201
+    flags:
+      - "enchanted"
+    description:
+      - "&7Use this Spell Scroll to"
+      - "&7teleport to a Portal location"
+  400:
+    name: "Arcane Table"
+    material: PLAYER_HEAD
+    skin: 42c8e76fcdde9a15ae3929b84bf6ffa4c1777b1e26b7d6d8938f0ef04e84874c
+    description:
+      - "&7Use this to craft Spell Scrolls"
+recipes:
+  1:
+    1:
+      shape:
+        - "LLL"
+        - "LPL"
+        - "LLL"
+      items:
+        L: 4
+        P: PAPER
+  2:
+    1:
+      shape:
+        - "LLL"
+        - "LPL"
+        - "LLL"
+      items:
+        L: 4
+        P: 1
+  3:
+    1:
+      shape:
+        - "LLL"
+        - "LPL"
+        - "LLL"
+      items:
+        L: 4
+        P: 2
+  4:
+    1:
+      shape:
+        - "LGL"
+        - "GLG"
+        - "LGL"
+      items:
+        L: LAPIS_BLOCK
+        G: GOLD_INGOT
+  100:
+    1:
+      shape:
+        - "LFL"
+        - "FSF"
+        - "LFL"
+      items:
+        L: 4
+        S: 1
+        F: FIRE_CHARGE
+  110:
+    1:
+      shape:
+        - "LFL"
+        - "FSF"
+        - "LFL"
+      items:
+        L: 4
+        S: 2
+        F: FIRE_CHARGE
+  120:
+    1:
+      shape:
+        - "LFL"
+        - "FSF"
+        - "LFL"
+      items:
+        L: 4
+        S: 3
+        F: FIRE_CHARGE
+  101:
+    1:
+      shape:
+        - "LLL"
+        - "ESE"
+        - "LLL"
+      items:
+        L: 4
+        S: 1
+        E: ENDER_PEARL
+  102:
+    1:
+      shape:
+        - "LLL"
+        - "NSN"
+        - "LLL"
+      items:
+        L: 4
+        S: 1
+        N: NAUTILUS_SHELL
+  112:
+    1:
+      shape:
+        - "LLL"
+        - "NSN"
+        - "LLL"
+      items:
+        L: 4
+        S: 2
+        N: NAUTILUS_SHELL
+  122:
+    1:
+      shape:
+        - "LLL"
+        - "NSN"
+        - "LLL"
+      items:
+        L: 4
+        S: 3
+        N: NAUTILUS_SHELL
+  104:
+    1:
+      shape:
+        - "LIL"
+        - "ISI"
+        - "LIL"
+      items:
+        L: 4
+        S: 1
+        I: BLUE_ICE
+  114:
+    1:
+      shape:
+        - "LIL"
+        - "ISI"
+        - "LIL"
+      items:
+        L: 4
+        S: 2
+        I: BLUE_ICE
+  124:
+    1:
+      shape:
+        - "LIL"
+        - "ISI"
+        - "LIL"
+      items:
+        L: 4
+        S: 3
+        I: BLUE_ICE
+  201:
+    1:
+      shape:
+        - "LEL"
+        - "ESE"
+        - "LEL"
+      items:
+        L: 4
+        S: 1
+        E: ENDER_PEARL
+  400:
+    1:
+      shape:
+        - "LTL"
+        - "LDL"
+        - "OOO"
+      items:
+        L: 4
+        T: CRAFTING_TABLE
+        D: DIAMOND_BLOCK
+        O: OBSIDIAN
+drops:
+  ZOMBIE:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"
+  SKELETON:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"
+  STRAY:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"
+  VILLAGER:
+    - "5:2:.75"
+    - "5:3:.2"
+    - "5:4:.01"
+  WANDERING_TRADER:
+    - "5:2:.75"
+    - "5:3:.2"
+    - "5:4:.01"
+    - "201:1:.001"
+  ZOMBIE_VILLAGER:
+    - "5:2:.75"
+    - "5:3:.2"
+    - "5:4:.01"
+  DROWNED:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"
+  HUSK:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"
+  ILLUSIONER:
+    - "5:1:.75"
+    - "5:2:.3"
+    - "5:3:.05"
+    - "201:1:.001"
+  EVOKER:
+    - "5:1:.75"
+    - "5:2:.3"
+    - "5:3:.05"
+    - "201:1:.001"
+  PILLAGER:
+    - "5:1:.75"
+    - "5:2:.3"
+    - "5:3:.05"
+  VINDICATOR:
+    - "5:1:.75"
+    - "5:2:.3"
+    - "5:3:.05"
+  WITCH:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"
+    - "201:1:.001"
+  PIGLIN:
+    - "5:1:.75"
+    - "5:2:.2"
+    - "5:3:.01"

@@ -3,16 +3,17 @@ package io.github.jamessoda.mc.chocolate.economy
 import co.aikar.commands.BaseCommand
 import co.aikar.commands.annotation.*
 import co.aikar.commands.bukkit.contexts.OnlinePlayer
-import io.github.jamessoda.mc.chocolate.Chocolate
+import io.github.jamessoda.mc.chocolate.Chocolate.Companion.plugin
+import io.github.jamessoda.mc.chocolate.economy.bank.menu.BankMenu
+import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
-import org.mongodb.morphia.query.FindOptions
 
 @CommandAlias("economy|eco")
-class EconomyCommand(private val plugin: Chocolate) : BaseCommand() {
+class EconomyCommand : BaseCommand() {
 
-    private val economy = plugin.economyManager
+    val database = plugin.database
 
     @Default
     @Subcommand("balance|bal")
@@ -22,60 +23,73 @@ class EconomyCommand(private val plugin: Chocolate) : BaseCommand() {
     }
 
     @Subcommand("pay|give")
-    @CommandCompletion("@players @nothing")
+    @CommandCompletion("@players")
+    @CommandAlias("pay")
     fun onPay(player: Player, target: OnlinePlayer, amount: Int) {
 
-        if(player == target.player) {
+        if (player == target.player) {
             plugin.language.sendMessage(player, "economy.pay_oneself")
             return
         }
 
-        var balance = economy.getBalance(player)
+        var coinPouch = database.getCoinPouch(player)
 
-        if(balance < amount) {
+        if (coinPouch < amount) {
             plugin.language.sendMessage(player, "economy.insufficient_funds")
         } else {
-            var targetBalance = economy.getBalance(target.player)
-            balance -= amount
-            targetBalance += amount
+            var targetCoinPouch = database.getCoinPouch(target.player)
+            coinPouch -= amount
+            targetCoinPouch += amount
 
-            economy.setBalance(player, balance)
-            economy.setBalance(target.player, targetBalance)
+            database.setCoinPouch(player, coinPouch)
+            database.setCoinPouch(target.player, targetCoinPouch)
 
             plugin.language.sendMessage(player, "economy.payment_give", mapOf(
-                    Pair("{player}", target.player.name), Pair("{amount}", "$amount")))
+                    Pair("{player}", target.player.name), Pair("{coins}", "$amount")))
 
             plugin.language.sendMessage(target.player, "economy.payment_receive", mapOf(
-                    Pair("{player}", player.name), Pair("{amount}", "$amount")))
+                    Pair("{player}", player.name), Pair("{coins}", "$amount")))
         }
     }
 
     @Subcommand("leaderboard|top")
+    @CommandAlias("baltop")
     fun onLeaderboard(player: Player) {
-        val query = plugin.database.createUserQuery()
 
-        val topUsers = query.field("balance").greaterThan(0).order("-balance").asList(FindOptions().limit(10))
+        database.getEconomyTop() { topUsers ->
+            topUsers.sortedWith(compareByDescending { database.getTotalMoney(it) })
 
-        plugin.language.sendMessage(player, "economy.leaderboard_header")
-        for(i in 1..topUsers.size) {
-            val user = topUsers[i - 1]
-            plugin.language.sendMessage(player, "economy.leaderboard_entry", mapOf(
-                    Pair("{position}", "$i"), Pair("{player}", user.username!!),
-                    Pair("{amount}", "${user.balance}")))
+            Bukkit.getScheduler().runTask(plugin, Runnable {
+                plugin.language.sendMessage(player, "economy.leaderboard_header")
+                for (i in 1..topUsers.size) {
+                    val uuid = topUsers[i - 1]
+
+                    plugin.language.sendMessage(player, "economy.leaderboard_entry", mapOf(
+                            Pair("{position}", "$i"), Pair("{player}", Bukkit.getOfflinePlayer(uuid).name ?: ""),
+                            Pair("{total_money}", "${database.getTotalMoney(uuid)}")))
+                }
+            })
         }
     }
 
     @Subcommand("admin give")
     @CommandPermission("chocolate.admin")
-    @CommandCompletion("@players @nothing")
-    fun onAdminGive(sender: CommandSender, target: OnlinePlayer, amount: Int) {
+    @CommandCompletion("@players @currency-type @nothing")
+    fun onAdminGive(sender: CommandSender, target: OnlinePlayer, currency: String, amount: Int) {
         sender.sendMessage("${ChatColor.GREEN}Gave money")
 
-        var balance = economy.getBalance(target.player)
-        balance += amount
+        if (currency.toLowerCase() == "bank") {
+            database.addBankBalance(target.player, amount)
+        } else if (currency.toLowerCase() == "pouch") {
+            database.addCoins(target.player, amount)
+        }
 
-        economy.setBalance(target.player, balance)
+        target.player.sendMessage("${ChatColor.GREEN}Gave [${amount}] to [${target.player.name}]'s $currency.")
+    }
 
-        target.player.sendMessage("${ChatColor.GREEN}Given money [${amount}]")
+    @Subcommand("admin bank")
+    @CommandPermission("chocolate.admin")
+    fun onAdminBank(player: Player) {
+        BankMenu.instance.openInventory(player)
     }
 }

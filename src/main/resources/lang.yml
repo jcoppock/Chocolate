@@ -1,23 +1,162 @@
 colors:
-  currency: "#0ac944"
+  # Still supports vanilla colors
+  # Colors use ^
+  coins: "#ffdf01"
+  chocolate: "#d07d44"
+  twitch: "#6441a5"
 templates:
-  balance: "<color:{currency}>${balance}"
-  currency: "<color:{currency}>${amount}"
+  # Templates use %
+  coins: "^coins^{coins}❂"
+  bank_balance: "^coins^{bank_balance}❂"
+  total_money: "^coins^{total_money}❂"
+  server_name: "^chocolate^Chocolate"
 messages:
+  spawn_info:
+    general:
+      - "&7Welcome to %server_name% MC&7!"
+      - "&7This is a community Minecraft Server for ^twitch^JesseSMFI &7& ^twitch^Demenishki&7!"
+      - "&7This server is called %server_name% &7simply because it's not vanilla."
+      - "&7I'll let the others around here explain. Go talk to them!"
+    guilds:
+      - "&8--== &7Guilds &8==--"
+      - "&7First, you can come together with others and form Guilds!"
+      - "&7Guild Leaders can claim chunks of land for the guild and its members to protect
+           it from others who may want to claim the area for themselves. Guilds can create a
+           Portal in their territory so members can easily get back home!"
+      - "&7Guild Leaders just need to type &f/guild portal&7."
+      - "&7Want to go solo? No problem! Simply create a Guild by yourself!
+           One-man Guilds are not penalized, although they may require more grinding."
+      - "&7Type &f/guild create &7to create your own Guild."
+    masteries:
+      - "&8--== &7Masteries &8==--"
+      - "&7Next, we have Masteries."
+      - "&7These Masteries allow you to spend Experience Levels to gain Mastery in different
+      areas, unlocking special benefits in that Mastery."
+      - "&7For example, type &f/magic &7to view the progression to mastering Magic!"
+    magic:
+      - "&8--== &7Magic &8==--"
+      - "&7The biggest addition is &3Spells&7!"
+      - "&7Rather than typing commands to perform special actions, you'll be using &3Magic
+      Scrolls &7that you can craft!"
+      - "&7For example, there are &3Scrolls &7that let you teleport around the world, fight your
+      enemies, and much more!"
+      - "&7These &3Spell Scroll &7recipes can be viewed in your Recipe Book! &3Spell Scrolls
+      &7can only be made in Arcane Tables, like the one next to me."
+      - "Check the Enderchest behind me. There should be a &3Teleport Scroll &7to
+      teleport out of Spawn. Just hold the &3Scroll &7in your hand and Right-Click!"
+      - "&cMake sure you're ready to leave, as you won't be able to get back to this Spawn."
+  misc:
+    welcome:
+      - "Everyone welcome {player} to the server!"
+    welcome_player:
+      - "&7Please type ^twitch^/discord &7to verify your Minecraft Account!"
+      - "&7Please type &f/rules &7to view the server's rules!"
+    rules:
+      - "&f#1: &7No bigotry or hate speech."
+      - "&f#2: &7No griefing/looting, even in unclaimed territory"
+      - "&f#3: &7Dungeon/Ship chests replenish for other players, so do not break them after you
+      loot them"
+      - "&f#4: &7More to come... Just don't be mean. 4Weird"
+    discord:
+      - "&7This is a community server for ^twitch^JesseSMFI &7& ^twitch^Demenishki"
+      - "&7You must be a verified ^twitch^Twitch Subscriber &7through one of their Discord servers to play"
+      - "^twitch^JesseSMFI  : https://discord.gg/nCeZrv6"
+      - "^twitch^Demenishki : https://discord.gg/evd4dR7"
+    not_verified:
+      - "&4You must be verified to do that!"
+      - "&4Type ^twitch^/discord"
+    no_command: "&4That command either does not exist or you do not have permission to use it!"
   economy:
-    balance: "Your current balance is %balance%<color:white>."
-    payment_receive: "You received %currency% <color:white> from <color:gold>{player}<color:white>."
-    payment_give: "You paid <color:gold>{player} %currency%<color:white>."
-    insufficient_funds: "<color:red>You do not have enough money to do that!"
-    pay_oneself: "<color:red>You cannot pay yourself!"
+    balance:
+      - "&6Balances:"
+      - "&6You &fare currently carrying %coins%&f."
+      - "&6You &fhave %bank_balance% &fin the &2Bank&f."
+      - "&7----------------------"
+    payment_receive: "You received %coins% &ffrom &6{player}&f."
+    payment_give: "You paid &f{player} %coins%&f."
+    insufficient_funds: "&4You do not have enough money to do that!"
+    pay_oneself: "&4You cannot pay yourself!"
     leaderboard_header: "Economy Leaderboard:"
-    leaderboard_entry: "<color:gold>#{position}: <color:white>{player} with %currency%"
+    leaderboard_entry: "&6#{position}: {player} &fwith %total_money%"
   guild:
-    no_info: "<color:red>You are not a member of any guild!"
-    info: "You are a member of <color:gold>[{guild_name}]<color:white>."
-    create: "You are now the <color:gold>Owner <color:white>of <color:gold>[{guild_name}]<color:white>."
-    invite_sent: "You invited <color:gold>{player} <color:white> to the guild."
-    invite_received: "{player} invited you to become a member of <color:gold>[{guild_name}]<color:white>. You have one minute to accept."
-    invite_other: "<color:gold>{player} <color:white>invited <color:gold>{target} <color:white> to the guild."
-    invite_accepted: "<color:gold>{player} accepted the invitation! They have joined the guild."
-    invite_declined: "<color:gold>{player} <color:red>declined the invitation because they waited too long."
+    no_info: "&4You are not a member of any guild!"
+    info:
+      - "&0--==&6[{guild_name} | [&l{guild_tag}&r&6]]&0==--"
+      - "    &7- The guild owns {guild_chunks} chunks"
+      - "    &7- The guild has {guild_users} members"
+      - "    &7- The guild has %coins%"
+      - "    &7- The guild was created on {guild_created_date}"
+    must_be_owner: "&4You must be the Guild Owner to do that!"
+    must_be_leader: "&4You must be a Guild Leader to do that!"
+    list_header: "Guild Leaderboard:"
+    list_entry: "&6#{position}: [{guild_name} | [&l{guild_tag}&r&6]] &fwith &6{guild_chunks} chunks
+    &fand
+    &6{guild_users} members &fand %coins%"
+    member_header: "&6{guild_name} &fMembers:"
+    member_entry: "  &8-&7{player}"
+    create: "You are now the &6Owner &fof &6[{guild_name}]&f."
+    create_other: "&6{player} has now created a new guild named &6[{guild_name}]&f."
+    invite_sent: "You invited &6{player} &fto the guild."
+    invite_received: "{player} invited you to become a member of &6[{guild_name}]&f. You have one minute to accept with '/guild accept <Guild>'"
+    invite_other: "&6{player} &finvited &6{target} &f to the guild."
+    invite_accepted: "&6{player} accepted the invitation! They have joined the guild."
+    invite_declined: "&6{player} &4declined the invitation because they waited too long."
+    invite_already_in_guild: "&7{player} is already in a guild."
+    left: "You have left the guild."
+    left_other: "&6{player} has left the guild."
+    chunk_info: "&6[{guild_name}]&f owns this Chunk!"
+    chunk_info_with_cost:
+    - "&6[{guild_name}]&f owns this Chunk!"
+    - "It would cost %coins% to claim this Chunk for your Guild!"
+    chunk_no_info: "No Guild owns this Chunk!"
+    chunk_no_info_with_cost:
+      - "No Guild owns this Chunk!"
+      - "It would cost %coins% to claim this Chunk for your Guild!"
+    enter: "You have entered the territory of &6[{guild_name}] : [{guild_tag}]"
+    leave: "You are now leaving the territory of &6[{guild_name}] : [{guild_tag}]"
+    cancelled_action: "&4You must be a member of &6[{guild_name}] &4to do that."
+    not_in_guild: "&4You are not in a Guild!"
+    disbanded: "&7The Guild &6[{guild_name}] &7has been disbanded."
+    kick_other: "&6{player} has been kicked from the guild."
+    kick_self: "&6You have been kicked from the guild."
+    not_in_your_guild: "&6{player} is not in your guild."
+    ownership_transfered: "&6{player} is now the owner of the guild."
+    leader_add: "&6{player} is now a leader of the guild."
+    leader_already: "&4{player} is already a leader of the guild."
+    leader_remove: "&6{player} is no longer a leader of the guild."
+    leader_not: "&6{player} is not a leader of the guild."
+    cannot_kick: "&4You cannot kick {player} from the guild."
+  bank:
+    deposit: "&6You &fsuccessfully deposited %coins%&f."
+    withdraw: "&6You &fsuccessfully withdrew %coins%&f."
+  magic:
+    not_here: "&4That spell scroll cannot be used here!"
+  masteries:
+    help:
+      - "&7Masteries are different skills and professions that you can spend XP Levels to improve
+       in. Improving your Mastery unlocks new recipes and increases effectiveness when using that
+        skill or profession."
+      - "&7Type &f/mastery <Mastery Name> &7to improve your Mastery!"
+    increase_broadcast: "&6{player} &7has just reached &6{name} Mastery {level}&7!"
+    leaderboard_header: "&6{name} Mastery Leaderboard"
+    leaderboard_entry: "&6#{position}: {player} &fwith &6Mastery {level}"
+
+menu:
+  bank:
+    deposit_menu_lore: "&8[Click] &7to &6Deposit ^coins^Coins"
+    confirm_deposit_name: "&6Deposit %coins%?"
+    confirm_deposit_lore: "&8[Click] &7to Deposit %coins% &7to the &2Bank"
+    withdraw_menu_lore: "&8[Click] &7to &6Withdraw ^coins^Coins"
+    confirm_withdraw_name: "&6Withdraw %coins%?"
+    confirm_withdraw_lore: "&8[Click] &7to Withdraw %coins% &7to the &2Bank"
+    balance:
+      - "&6You &fare currently carrying %coins%&f."
+      - "&6You &fhave %bank_balance% &fin the &2Bank&f."
+scoreboard:
+  title: "    %server_name%    "
+  lines:
+    - "&7----------------------"
+    - "&7Coin Pouch: %coins%"
+    - ""
+    - "&7Location: &4{guild_name}"
+    - "&7----------------------"

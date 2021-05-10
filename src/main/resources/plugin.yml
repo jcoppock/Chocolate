@@ -4,3 +4,4 @@ version: "1.0-SNAPSHOT"
 description: Chocolate
 author: Zaxarner
 api-version: "1.16"
+depend: [Citizens, DiscordBotAPI]
